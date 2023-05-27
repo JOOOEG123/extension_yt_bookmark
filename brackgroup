@@ -1,0 +1,29 @@
+// chrome.action.onClicked.addListener((tab) => {
+//     chrome.scripting.executeScript({
+//         target: { tabId: tab.id },
+//         files: ["./content.js"],
+//     });
+//     }
+// );
+
+console.log("background.js loaded")
+chrome.runtime.onInstalled.addListener(function() {
+    console.log("background.js onInstalled")
+    // chrome.bookmarks.create({
+    //     title: "My Extension's Bookmarks"
+    // });
+});
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    // console.log("background.js tabs.onUpdated", tabId, changeInfo, tab)
+    // if (changeInfo.status == 'complete') {
+    //     chrome.scripting.executeScript({
+    //         target: { tabId: tab.id },
+    //         files: ["./content.js"],
+    //     });
+    // }
+
+    
+
+    chrome.tabs.sendMessage(tabId, {message: "hello"});
+});
